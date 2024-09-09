@@ -1,19 +1,17 @@
-insert into chat.user (name, password) VALUES ('user1', '1111');
-insert into chat.user (name, password) VALUES ('user2', '2222');
-insert into chat.user (name, password) VALUES ('user3', '3333');
-insert into chat.user (name, password) VALUES ('user4', '4444');
-insert into chat.user (name, password) VALUES ('user5', '5555');
-insert into chat.user (name, password) VALUES ('user6', '6666');
-insert into chat.user (name, password) VALUES ('user7', '7777');
+INSERT INTO chat.user (name, password) VALUES ('user1', '1111');
+INSERT INTO chat.user (name, password) VALUES ('user2', '2222');
+INSERT INTO chat.user (name, password) VALUES ('user3', '3333');
+INSERT INTO chat.user (name, password) VALUES ('user4', '4444');
+INSERT INTO chat.user (name, password) VALUES ('user5', '5555');
 
-insert into chat.chatroom (chat_name, chat_owner) values ('chat1', 1);
-insert into chat.chatroom (chat_name, chat_owner) values ('chat2', 2);
-insert into chat.chatroom (chat_name, chat_owner) values ('chat3', 3);
-insert into chat.chatroom (chat_name, chat_owner) values ('chat4', 4);
-insert into chat.chatroom (chat_name, chat_owner) values ('chat5', 5);
+INSERT INTO chat.chatroom (chat_name, chat_owner) VALUES ('chat1', 1);
+INSERT INTO chat.chatroom (chat_name, chat_owner) VALUES ('chat2', 2);
+INSERT INTO chat.chatroom (chat_name, chat_owner) VALUES ('chat3', 3);
+INSERT INTO chat.chatroom (chat_name, chat_owner) VALUES ('chat4', 4);
+INSERT INTO chat.chatroom (chat_name, chat_owner) VALUES ('chat5', 5);
 
-insert into chat.message (sender_id, room_id, text, ldatetime) VALUES (1, 2, 'Hello, world!', to_timestamp('2023/05/29 10:12:48', 'YYYY/MM/DD HH:MI:SS'));
-insert into chat.message (sender_id, room_id, text, ldatetime) VALUES (2, 2, 'Hello, user2!', to_timestamp('2023/05/29 10:12:48', 'YYYY/MM/DD HH:MI:SS'));
-insert into chat.message (sender_id, room_id, text, ldatetime) VALUES (3, 2, 'Hello, my friends!', to_timestamp('2023/05/29 10:12:48', 'YYYY/MM/DD HH:MI:SS'));
-insert into chat.message (sender_id, room_id, text, ldatetime) VALUES (7, 1, 'What is your name?', to_timestamp('2023/05/29 10:12:48', 'YYYY/MM/DD HH:MI:SS'));
-insert into chat.message (sender_id, room_id, text, ldatetime) VALUES (6, 1, 'Oh, my name is user6!', to_timestamp('2023/05/29 10:12:48', 'YYYY/MM/DD HH:MI:SS'));
+INSERT INTO chat.message (sender_id, room_id, text) VALUES (1, 2, 'Hello, world 1!');
+INSERT INTO chat.message (sender_id, room_id, text) VALUES (2, 2, 'Hello, world 2!');
+INSERT INTO chat.message (sender_id, room_id, text) VALUES (3, 2, 'Hello, world 3!');
+INSERT INTO chat.message (sender_id, room_id, text) VALUES (1, 1, 'Hello, world 4!');
+INSERT INTO chat.message (sender_id, room_id, text) VALUES (5, 1, 'Hello, world 5!');

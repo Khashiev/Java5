@@ -1,27 +1,25 @@
-drop schema if exists chat cascade;
-drop table if exists chat.user, chat.message, chat.chatroom;
+DROP SCHEMA IF EXISTS chat CASCADE;
+CREATE SCHEMA IF NOT EXISTS chat;
 
-create schema if not exists chat;
-
-create table if not exists chat.user
+CREATE TABLE IF NOT EXISTS chat.user
 (
-    id       serial primary key,
-    name     varchar(20) not null unique,
-    password varchar(20) not null
+    id       serial PRIMARY KEY,
+    name     varchar(30) NOT NULL UNIQUE,
+    password varchar(30) NOT NULL
 );
 
-create table if not exists chat.chatroom
+CREATE TABLE IF NOT EXISTS chat.chatroom
 (
-    id         serial primary key,
-    chat_name  varchar(20) not null unique,
-    chat_owner integer     not null references chat.user (id)
+    id         serial PRIMARY KEY,
+    chat_name  varchar(30) NOT NULL UNIQUE,
+    chat_owner integer     NOT NULL REFERENCES chat.user (id)
 );
 
-create table if not exists chat.message
+CREATE TABLE IF NOT EXISTS chat.message
 (
-    id        serial primary key,
-    sender_id integer not null references chat.user (id),
-    room_id   integer not null references chat.chatroom (id),
-    text      text    not null,
-    lDateTime timestamp default CURRENT_TIMESTAMP
+    id        serial PRIMARY KEY,
+    sender_id integer NOT NULL REFERENCES chat.user (id),
+    room_id   integer NOT NULL REFERENCES chat.chatroom (id),
+    text      text    NOT NULL,
+    date_time timestamp DEFAULT CURRENT_TIMESTAMP
 );

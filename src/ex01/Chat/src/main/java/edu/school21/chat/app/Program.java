@@ -19,30 +19,30 @@ public class Program {
         updateDatabase("data.sql", db);
 
         MessagesRepository repository = new MessageRepositoryJdbcImpl(db.getDataSource());
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("Enter message ID");
-            String line = scanner.nextLine();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter message ID");
+        System.out.print("-> ");
 
-            if (line.equals("exit")) {
-                System.exit(0);
-            }
-
+        if (in.hasNextLong()) {
+            String line = in.nextLine();
             Long id = Long.parseLong(line);
             Optional<Message> message = repository.findById(id);
 
             if (message.isPresent()) {
-                System.out.println(message.get());
+                String msgStr = parseMsg(message.get().toString());
+                System.out.printf("Message : %s\n", msgStr);
             } else {
                 System.out.println("Message not found");
             }
+        } else {
+            System.out.println("Invalid ID");
         }
     }
 
     private static void updateDatabase(String file, dbSource dbSource) {
         try (Connection connection = dbSource.getConnection();
-        Statement statement = connection.createStatement()) {
+             Statement statement = connection.createStatement()) {
             InputStream inputStream = Program.class.getClassLoader().getResourceAsStream(file);
             assert inputStream != null;
             Scanner scanner = new Scanner(inputStream).useDelimiter(";");
@@ -51,7 +51,16 @@ public class Program {
                 statement.execute(scanner.next().trim());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+    }
+
+    private static String parseMsg(String msg) {
+        return msg.replaceFirst("\\{", "{\n\t")
+                .replaceAll("author=", "\n\tauthor=")
+                .replaceAll("chatroom=", "\n\tchatroom=")
+                .replaceAll("text=", "\n\ttext=")
+                .replaceAll("dateTime=", "\n\tdateTime=")
+                .replaceAll("}$", "\n}");
     }
 }

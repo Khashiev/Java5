@@ -16,11 +16,6 @@ public class Chatroom {
         this.messages = messages;
     }
 
-    public Chatroom(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }
@@ -70,11 +65,11 @@ public class Chatroom {
 
     @Override
     public String toString() {
-        return "Chatroom{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", owner='" + owner + '\'' +
-                ", messages=" + messages +
+        return "{" +
+                "id=" + id + "," +
+                "name=" + "\""  + name + "\"" + "," +
+                "owner=" + "\"" + owner + "\"" + "," +
+                "messages=" + messages +
                 "}";
     }
 }

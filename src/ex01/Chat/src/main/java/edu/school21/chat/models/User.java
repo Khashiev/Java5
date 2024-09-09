@@ -19,12 +19,6 @@ public class User {
         this.usedRooms = usedRooms;
     }
 
-    public User(Long id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
-
     public Long getId() {
         return id;
     }
@@ -84,12 +78,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", createdRooms=" + createdRooms +
-                ", usedRooms=" + usedRooms +
+        return "{" +
+                "id=" + id + "," +
+                "login=" + "\"" + login + '\"' + "," +
+                "password=" + "\"" + password + '\"' + "," +
+                "createdRooms=" + createdRooms + "," +
+                "usedRooms=" + usedRooms +
                 "}";
     }
 }

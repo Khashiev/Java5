@@ -10,8 +10,6 @@ public class Message {
     private Chatroom chatroom;
     private String text;
     private LocalDateTime dateTime;
-    private static final DateTimeFormatter FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     public Message(Long id, User author, Chatroom chatroom, String text, LocalDateTime dateTime) {
         this.id = id;
@@ -80,12 +78,15 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", author=" + author +
-                ", chatroom=" + chatroom +
-                ", text='" + text + '\'' +
-                ", dateTime=" + dateTime.format(FORMATTER) +
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+        String dateTimeStr = (dateTime == null ? null : dateTime.format(formatter));
+
+        return "{" +
+                "id=" + id + "," +
+                "author=" + author + "," +
+                "chatroom=" + chatroom + "," +
+                "text=" + (text == null ? null : ("\"" + text + "\"")) + "," +
+                "dateTime=" + dateTimeStr +
                 "}";
     }
 }
