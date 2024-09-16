@@ -1,19 +1,25 @@
-CREATE TABLE IF NOT EXISTS users (
-    id serial PRIMARY KEY,
-    login varchar(30) NOT NULL,
+DROP SCHEMA IF EXISTS chat CASCADE;
+CREATE SCHEMA IF NOT EXISTS chat;
+
+CREATE TABLE IF NOT EXISTS chat.user
+(
+    id       serial PRIMARY KEY,
+    name     varchar(30) NOT NULL UNIQUE,
     password varchar(30) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS chatroom (
-    id serial PRIMARY KEY,
-    name varchar(30) NOT NULL,
-    owner integer NOT NULL references users(id)
+CREATE TABLE IF NOT EXISTS chat.chatroom
+(
+    id         serial PRIMARY KEY,
+    chat_name  varchar(30) NOT NULL UNIQUE,
+    chat_owner integer     NOT NULL REFERENCES chat.user (id)
 );
 
-CREATE TABLE IF NOT EXISTS message (
-    id serial PRIMARY KEY,
-    author integer NOT NULL references users(id),
-    chatroom integer NOT NULL references chatroom(id),
-    text text NOT NULL ,
-    dateTime timestamp default CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS chat.message
+(
+    id        serial PRIMARY KEY,
+    sender_id integer NOT NULL REFERENCES chat.user (id),
+    room_id   integer NOT NULL REFERENCES chat.chatroom (id),
+    text      text    NOT NULL,
+    date_time timestamp DEFAULT CURRENT_TIMESTAMP
 );
